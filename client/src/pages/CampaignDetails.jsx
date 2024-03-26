@@ -17,6 +17,7 @@ const CampaignDetails = () => {
   const [donators, setDonators] = useState([]);
 
   const remainingDays = daysLeft(state.deadline);
+  const remainingamount = state.target - state.amountCollected;
 
   const fetchDonators = async () => {
     const data = await getDonations(state.pId);
@@ -97,7 +98,7 @@ const CampaignDetails = () => {
           </div>
         </div>
 
-        <div className={`flex-1 ${state.amountCollected<=state.target ? 'hidden' : ''}`}>
+        <div className={`flex-1 ${remainingamount<=0 || remainingDays<=0 ? 'hidden' : ''}`}>
           <h4 className="font-epilogue font-semibold text-[18px] text-white uppercase">Fund</h4>   
 
           <div className="mt-[20px] flex flex-col p-4 bg-[#1c1c24] rounded-[10px]">
